@@ -1,3 +1,9 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  devise_for :users
+  scope :api, defaults: { format: :json } do
+    devise_scope :user do
+      post "sign_up", to: "registrations#create"
+      post "sign_in", to: "sessions#create"
+    end
+  end
 end
