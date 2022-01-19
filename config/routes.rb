@@ -5,5 +5,6 @@ Rails.application.routes.draw do
       post "sign_up", to: "registrations#create"
       post "sign_in", to: "sessions#create"
     end
+    post 'social_auth/callback', to: 'social_auth_controller#authenticate_social_auth_user'
   end
 end

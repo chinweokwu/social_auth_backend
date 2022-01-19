@@ -4,7 +4,11 @@ class RegistrationsController < Devise::RegistrationsController
 
     if user.save
       token = user.generate_jwt
-      render json: { user: UserSerializer.new(user), token: token}, status: :created
+      render json: { 
+        status: 'SUCCESS',
+        message: "user was successfully registered",
+        token: token
+      }, status: :created
     else
       render json: { errors: { 'registration' => ['is invalid'] } }, status: :unprocessable_entity
     end
